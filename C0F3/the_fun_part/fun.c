@@ -433,6 +433,14 @@ do { \
 			printf("File already exists!\n");
 		}
 		close(fd);
+		
+		int fc = open("/.cydia_no_stash", O_RDONLY);
+		if (fc == -1) {
+		    fc = creat("/.cydia_no_stash", 0644);
+		} else {
+		    printf("File already exists!\n");
+		}
+		close(fc);
 
         rv = mount("hfs", "/Developer", MNT_UPDATE, (void *)&nmz);
 	}
